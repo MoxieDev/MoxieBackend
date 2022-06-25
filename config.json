@@ -1,0 +1,7 @@
+{
+    "Address"        : "127.0.0.1:443",
+    "RedisURL"       : "redis://default:redispw@localhost:49153",
+    "ReadTimeout"    : 10,
+    "WriteTimeout"   : 600,
+    "Static"         : "public"
+  }
