@@ -38,6 +38,21 @@ func handleRoom(w http.ResponseWriter, r *http.Request) (err error) {
 	return err
 }
 
+func handleGetAllRooms(w http.ResponseWriter, r *http.Request) (err error) {
+	res, err := data.CS.GetChatsJSON()
+
+	// Convert to JSON
+	resJSON, err := json.Marshal(res)
+
+	if err != nil {
+		return
+	}
+	if _, err := w.Write(resJSON); err != nil {
+		Danger("Error writing", res)
+	}
+	return
+}
+
 // Retrieve a chat room
 // GET /chat/1
 func handleGet(w http.ResponseWriter, r *http.Request, cr *data.ChatRoom) (err error) {

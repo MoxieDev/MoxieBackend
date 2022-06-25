@@ -33,6 +33,7 @@ func registerHandlers() *mux.Router {
 
 	//REST-API for chat room [JSON]
 	api.Handle("/chats", errHandler(handlePost)).Methods(http.MethodPost)
+	api.Handle("/chats", errHandler(handleGetAllRooms)).Methods(http.MethodGet)
 	api.Handle("/chats/{titleOrID}", errHandler(authorize(handleRoom))).Methods(http.MethodGet, http.MethodPut, http.MethodDelete)
 
 	// Check password matches room
@@ -62,6 +63,7 @@ func init() {
 func loadLog() {
 	file, err := os.OpenFile("chitchat.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 	if err != nil {
+		// Trying again
 		file, err = os.OpenFile("../chitchat.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 		if err != nil {
 			log.Fatalln("Failed to open log file", err)
