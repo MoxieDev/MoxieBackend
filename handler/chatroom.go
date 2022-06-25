@@ -39,6 +39,7 @@ func handleRoom(w http.ResponseWriter, r *http.Request) (err error) {
 }
 
 func handleGetAllRooms(w http.ResponseWriter, r *http.Request) (err error) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	res, err := data.CS.Chats()
 
 	// Convert to JSON

@@ -7,6 +7,8 @@ import (
 	"os"
 
 	"github.com/gorilla/mux"
+
+	// "github.com/rs/cors"
 	"moxiechat/data"
 )
 
@@ -48,6 +50,9 @@ func registerHandlers() *mux.Router {
 
 	// Error page
 	api.HandleFunc("/err", logConsole(handleError)).Methods(http.MethodGet)
+
+	api.Use(mux.CORSMethodMiddleware(api))
+
 	return api
 }
 
