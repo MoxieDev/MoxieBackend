@@ -1,7 +1,6 @@
 package data
 
 import (
-	"encoding/json"
 	"strconv"
 	"strings"
 	"time"
@@ -70,23 +69,6 @@ func (cs ChatServer) Chats() (rooms []ChatRoom, err error) {
 		}
 	}
 	return
-}
-
-// Chats will return all non-hidden ChatRooms
-func (cs ChatServer) GetChatsJSON() (b string, err error) {
-	rooms := make([]ChatRoom, 0)
-	for _, v := range CS.Rooms {
-		if v.Type != HiddenRoom {
-			rooms = append(rooms, *v)
-		}
-	}
-
-	variable, err := json.Marshal(rooms)
-	b = string(variable)
-    if err != nil {
-        return "{}", err
-    }
-    return string(b), nil
 }
 
 // Retrieve returns a single chat room based on title or ID

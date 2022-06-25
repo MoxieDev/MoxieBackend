@@ -39,7 +39,7 @@ func handleRoom(w http.ResponseWriter, r *http.Request) (err error) {
 }
 
 func handleGetAllRooms(w http.ResponseWriter, r *http.Request) (err error) {
-	res, err := data.CS.GetChatsJSON()
+	res, err := data.CS.Chats()
 
 	// Convert to JSON
 	resJSON, err := json.Marshal(res)
