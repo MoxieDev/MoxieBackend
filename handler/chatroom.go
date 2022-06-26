@@ -57,6 +57,7 @@ func handleGetAllRooms(w http.ResponseWriter, r *http.Request) (err error) {
 // Retrieve a chat room
 // GET /chat/1
 func handleGet(w http.ResponseWriter, r *http.Request, cr *data.ChatRoom) (err error) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	res, err := cr.ToJSON()
 	if err != nil {
 		return
@@ -71,8 +72,8 @@ func handleGet(w http.ResponseWriter, r *http.Request, cr *data.ChatRoom) (err e
 // Create a ChatRoom
 // POST /chats
 func handlePost(w http.ResponseWriter, r *http.Request) (err error) {
-	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	// read in request
 	len := r.ContentLength
 	body := make([]byte, len)
